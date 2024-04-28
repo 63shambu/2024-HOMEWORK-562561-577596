@@ -13,15 +13,18 @@ import it.uniroma3.diadia.giocatore.*;
 
 public class Partita {
 
+	static final private String[] elencoComandi = { "aiuto", "fine", "prendi", "posa", "vai", "guarda" };
 	
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;
 	private boolean finita;
 	private Giocatore giocatore;
 	private Labirinto labirinto;
+	private IO console;
 
 	
-	public Partita(){
+	public Partita(IO console){
+		this.console = console;
 		this.labirinto = new Labirinto();
 		Giocatore giocatore = new Giocatore();
 		this.giocatore=giocatore;
@@ -112,6 +115,30 @@ public class Partita {
 
 	public void setLabirinto(Labirinto labirinto) {
 		this.labirinto = labirinto;
+	}
+
+
+	public IO getConsole() {
+		return console;
+	}
+
+
+	public void setConsole(IO console) {
+		this.console = console;
+	}
+
+
+	public boolean giocatoreIsVivo() {
+		int cfu;
+		cfu = getCfu();
+		if (cfu == 0)
+		    return false;
+		return true;
+	}
+
+
+	public static String[] getElencocomandi() {
+		return elencoComandi;
 	}
 	
 }

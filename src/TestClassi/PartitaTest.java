@@ -9,8 +9,8 @@ import it.uniroma3.diadia.*;
 import it.uniroma3.diadia.ambienti.*;
 
 public class PartitaTest {
-
-	Partita p = new Partita();
+    IOConsole io = new IOConsole();
+	Partita p = new Partita(io);
 	Stanza s = new Stanza("Stanza");
 	
 	@Test
