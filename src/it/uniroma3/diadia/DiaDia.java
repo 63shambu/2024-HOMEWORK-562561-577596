@@ -30,10 +30,11 @@ public class DiaDia {
 	private Partita partita;
 	private IOConsole console;
 
-	public DiaDia(IO io) {
+	public DiaDia(IO io, Labirinto labirinto) {
 
 		this.console = (IOConsole) io;
-		this.partita = new Partita(this.console);
+		this.partita = new Partita(io, labirinto);
+		
 	}
 
 	public void gioca() {
@@ -68,87 +69,28 @@ public class DiaDia {
 
 	}
 
-	
-	/**
-	 * Stampa informazioni di aiuto.
-	
-	private void aiuto() {
-		console.mostraMessaggio("I comandi che puoi dare sono i seguenti:");
-		for (int i = 0; i < elencoComandi.length; i++)
-			console.mostraMessaggio(elencoComandi[i] + " ");
-	}
- */
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra e ne stampa il
-	 * nome, altrimenti stampa un messaggio di errore
-	 
-	private void vai(String direzione) {
-		if (direzione == null)
-			console.mostraMessaggio("Dove vuoi andare ?");
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			console.mostraMessaggio("Direzione inesistente");
-		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getCfu();
-			this.partita.setCfu(cfu--);
-		}
-		console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 
-	}*/
-
-	/**
-	 * Prende un attrezzo dalla stanza e lo mette in borsa, altrimenti stampa un
-	 * messaggio di errore
-	 
-	private void prendi(String nomeAttrezzo) {
-		if (nomeAttrezzo == null) {
-			console.mostraMessaggio("Che attrezzo vuoi prendere ?");
-			return;
-		}
-		if (!this.partita.getStanzaCorrente().hasAttrezzo(nomeAttrezzo)) {
-			console.mostraMessaggio("Attrezzo inesistente nella stanza");
-			return;
-		}
-		if (!this.partita.getGiocatore().prendiAttrezzo(partita.getStanzaCorrente(), nomeAttrezzo))
-			console.mostraMessaggio("Errore nel prendere un attrezzo");
-		else
-			console.mostraMessaggio("Ho preso " + nomeAttrezzo);
-	}
-*/
-	/**
-	 * Posa un attrezzo dalla borsa e lo mette nella stanza corrente altrimenti
-	 * stampa un messaggio di errore
-	
-	private void posa(String nomeAttrezzo) {
-		if (nomeAttrezzo == null) {
-			console.mostraMessaggio("Che attrezzo vuoi posare ?");
-			return;
-		}
-
-		if (!this.partita.getGiocatore().getBorsa().hasAttrezzo(nomeAttrezzo)) {
-			console.mostraMessaggio("Attrezzo inesistente nella borsa");
-			return;
-		}
-
-		if (!this.partita.getGiocatore().posaAttrezzo(partita.getStanzaCorrente(), nomeAttrezzo))
-			console.mostraMessaggio("Errore nel posare un attrezzo");
-		else
-			console.mostraMessaggio("Ho posato " + nomeAttrezzo);
-	} */
-
-	/**
-	 * Comando "Fine".
-	
-	private void fine() {
-		console.mostraMessaggio("Grazie di aver giocato!"); // si desidera smettere
-	}
- */
 	public static void main(String[] argc) {
-		IO io = new IOConsole();
-		DiaDia gioco = new DiaDia(io);
-		// DiaDia gioco = new DiaDia();
+		IO console = new IOConsole();
+		Labirinto labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("moneta", 3)
+				.addStanza("N11")
+				.addStanza("N18")
+				.addStanza("N13")
+				.addStanza("N15") 
+				.addAttrezzo("Lampada", 4)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Atrio", "N11", "sud")
+				.addAdiacenza("N11","Atrio","nord")
+				.addAdiacenza("Atrio", "N13", "est")
+				.addAdiacenza("N13", "Atrio", "ovest")
+				.addAdiacenza("N13", "N15", "ovest")
+				.addAdiacenza("N15", "N13", "est")
+				
+				.getLabirinto();
+		DiaDia gioco = new DiaDia(console, labirinto);
 		gioco.gioca();
 	}
 

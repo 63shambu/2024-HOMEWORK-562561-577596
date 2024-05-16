@@ -3,15 +3,25 @@ package TestClassi;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.diadia.*;
 import it.uniroma3.diadia.ambienti.*;
 
+
 public class PartitaTest {
     IOConsole io = new IOConsole();
-	Partita p = new Partita(io);
+    Labirinto labirinto = new Labirinto();
+	Partita p = new Partita(io, labirinto);
 	Stanza s = new Stanza("Stanza");
+	Stanza s1 = new Stanza("Biblioteca");
+
+	@Before
+	public void setUp() {
+		labirinto.setStanzaVincente(s1);
+		
+	}
 	
 	@Test
 	public void testGetStanzaVincente() {
@@ -26,7 +36,6 @@ public class PartitaTest {
 
 	@Test
 	public void testIsFinita() {
-		
 		assertFalse(p.isFinita());
 	}
 	

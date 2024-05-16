@@ -1,7 +1,7 @@
 package TestClassi;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,9 @@ public class LabirintoTest {
 	@Before
 	public void setUp() {
 		l = new Labirinto();
-		l.creaStanze();
+		
 		biblioteca = new Stanza("Biblioteca");
+		l.setStanzaVincente(biblioteca);
 		N11 = new Stanza("N11");
 	}
 
@@ -34,9 +35,6 @@ public class LabirintoTest {
 		l.setStanzaCorrente(N11);
 		assertEquals(N11, l.getStanzaCorrente());
 	}
-	@Test
-	public void testGetStanzaCorrente() {
-		assertEquals("Atrio", l.getStanzaCorrente().getNome());
-	}
+	
 
 }

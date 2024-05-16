@@ -4,7 +4,7 @@ import it.uniroma3.diadia.Partita;
 public class ComandoPosa implements Comando {
 	
 	private String nomeAttrezzo;
-
+ 
 	@Override
 	public void esegui(Partita partita) {
 		if (nomeAttrezzo == null) {

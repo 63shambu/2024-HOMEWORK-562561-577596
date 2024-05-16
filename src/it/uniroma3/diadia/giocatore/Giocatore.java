@@ -1,6 +1,6 @@
 package it.uniroma3.diadia.giocatore;
 import it.uniroma3.diadia.ambienti.*;
-import it.uniroma3.diadia.attrezzi.*;
+
 
 public class Giocatore {
 

@@ -2,7 +2,7 @@ package it.uniroma3.diadia.ambienti;
 
 //package it.uniroma3.diadia.ambienti;
 
-import it.uniroma3.diadia.attrezzi.*;
+
 
 /**
  * Questa classe riporta la Stanza iniziale e Stanza finale. Può avere diversi
@@ -17,6 +17,7 @@ public class Labirinto {
 	
 	private Stanza stanzaCorrente;
 	private Stanza stanzaVincente;
+	private Stanza stanzaIniziale;
 
 
 public Labirinto(){
@@ -25,18 +26,18 @@ public Labirinto(){
 
 public void creaStanze() {
 
-	/* crea gli attrezzi */
+	/* crea gli attrezzi
 	Attrezzo lanterna = new Attrezzo("lanterna",3);
 	Attrezzo osso = new Attrezzo("osso",1);
 	
-	/* crea stanze del labirinto */
+	crea stanze del labirinto
 	Stanza atrio = new Stanza("Atrio");
 	Stanza aulaN11 = new Stanza("Aula N11");
 	Stanza aulaN10 = new Stanza("Aula N10");
 	Stanza laboratorio = new Stanza("Laboratorio Campus");
 	Stanza biblioteca = new Stanza("Biblioteca");
 	
-	/* collega le stanze */
+	 collega le stanze 
 	atrio.impostaStanzaAdiacente("nord", biblioteca);
 	atrio.impostaStanzaAdiacente("est", aulaN11);
 	atrio.impostaStanzaAdiacente("sud", aulaN10);
@@ -50,12 +51,12 @@ public void creaStanze() {
 	laboratorio.impostaStanzaAdiacente("ovest", aulaN11);
 	biblioteca.impostaStanzaAdiacente("sud", atrio);
 
-    /* pone gli attrezzi nelle stanze */
+     pone gli attrezzi nelle stanze 
 	aulaN10.addAttrezzo(lanterna);
 	atrio.addAttrezzo(osso);
     setStanzaCorrente(atrio);
-    setStanzaVincente(biblioteca);
-}
+    setStanzaVincente(biblioteca);*/
+} 
 
 public Stanza getStanzaCorrente() {
 	return stanzaCorrente;
@@ -71,5 +72,12 @@ public Stanza getStanzaVincente() {
 
 public void setStanzaVincente(Stanza stanzaVincente) {
 	this.stanzaVincente = stanzaVincente;
+}
+public Stanza getStanzaIniziale() {
+	return stanzaIniziale;
+}
+
+public void setStanzaIniziale(Stanza stanzaIniziale) {
+	this.stanzaIniziale = stanzaIniziale;
 }
 }

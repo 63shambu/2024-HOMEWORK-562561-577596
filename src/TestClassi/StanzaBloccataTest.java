@@ -1,9 +1,6 @@
 package TestClassi;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +12,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaBloccataTest {
 
-	StanzaBloccata s = new StanzaBloccata("bloccata");
+	//(String nome,String strumentoCheSblocca, String direzioneBloccata)
+	StanzaBloccata s;
 	Stanza     sEst = new Stanza("stanzaEst");
 	Stanza     sOvest = new Stanza("stanzaOvest");
 	
@@ -23,9 +21,10 @@ public class StanzaBloccataTest {
 	Attrezzo spada;
 	
 	@Before
-	public void setUp() {
+	public void setUp() {//(String nome,String strumentoCheSblocca, String direzioneBloccata)
 		piedeDiPorco = new Attrezzo("piedeDiPorco", 7);
 		spada = new Attrezzo("spada", 20);
+		s = new StanzaBloccata("Bloccata", "piedeDiPorco", "ovest");
 		s.setStrumentoSblocca("piedeDiPorco");
 		s.impostaStanzaAdiacente("est", sEst);
 		s.impostaStanzaAdiacente("ovest", sOvest);
@@ -36,7 +35,7 @@ public class StanzaBloccataTest {
 	@Test // non c'è lo strumento che sblocca
 	public void testGetDescrizioneStrumentoSbagliato() {
 		s.addAttrezzo(spada);
-		assertNull(s.getStanzaAdiacente("ovest"));
+		assertEquals(s,s.getStanzaAdiacente("ovest"));
 	}
 	
 	@Test // non c'è lo strumento che sblocca ma non chiedo la direzione bloccata

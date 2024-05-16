@@ -1,4 +1,7 @@
 package it.uniroma3.diadia;
+import java.util.ArrayList;
+
+
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.giocatore.*;
 
@@ -13,45 +16,45 @@ import it.uniroma3.diadia.giocatore.*;
 
 public class Partita {
 
-	static final private String[] elencoComandi = { "aiuto", "fine", "prendi", "posa", "vai", "guarda" };
 	
-	private Stanza stanzaCorrente;
-	private Stanza stanzaVincente;
+	private ArrayList<String> comandi;
+	
 	private boolean finita;
 	private Giocatore giocatore;
 	private Labirinto labirinto;
 	private IO console;
 
 	
-	public Partita(IO console){
+	public Partita(IO console, Labirinto labirinto){
 		this.console = console;
-		this.labirinto = new Labirinto();
+		this.labirinto = labirinto;
 		Giocatore giocatore = new Giocatore();
 		this.giocatore=giocatore;
+		this.finita = false;
+		
+		comandi = new ArrayList<String>();
+		comandi.add(new String("aiuto"));
+		comandi.add(new String("fine"));
+		comandi.add(new String("prendi"));
+		comandi.add(new String("posa"));
+		comandi.add(new String("vai"));
+		comandi.add(new String("guarda"));
 		
 		/**
 	     *  le stanze le crea labirinto
 	     */
 		
-		labirinto.creaStanze();
-		this.stanzaCorrente = labirinto.getStanzaCorrente();  
-		this.stanzaVincente = labirinto.getStanzaVincente();
 		
-		this.finita = false;
 		
 	}
 
-   
-	public Stanza getStanzaVincente() {
-		return stanzaVincente;
-	}
 
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
+		this.getLabirinto().setStanzaCorrente(stanzaCorrente);
 	}
 
 	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
+		return this.getLabirinto().getStanzaCorrente();
 	}
 	
 	/**
@@ -59,7 +62,7 @@ public class Partita {
 	 * @return vero se partita vinta
 	 */
 	public boolean vinta() {
-		return this.getStanzaCorrente()== this.getStanzaVincente();
+		return labirinto.getStanzaCorrente()== labirinto.getStanzaVincente();
 	}
 
 	/**
@@ -98,11 +101,6 @@ public class Partita {
 	}
 
 
-	public void setStanzaVincente(Stanza stanzaVincente) {
-		this.stanzaVincente = stanzaVincente;
-	}
-
-
 	public void setFinita(boolean finita) {
 		this.finita = finita;
 	}
@@ -137,8 +135,8 @@ public class Partita {
 	}
 
 
-	public static String[] getElencocomandi() {
-		return elencoComandi;
+	public ArrayList<String> getElencocomandi() {
+		return this.comandi;
 	}
 	
 }

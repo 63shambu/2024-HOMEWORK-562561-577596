@@ -1,9 +1,7 @@
 package TestClassi;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.Before;
@@ -18,7 +16,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaBuiaTest {
 	
-	StanzaBuia s = new StanzaBuia("buia");
+	StanzaBuia s;
 	Stanza     sEst = new Stanza("stanzaEst");
 	
 	Attrezzo lampada;
@@ -27,6 +25,7 @@ public class StanzaBuiaTest {
 	@Before
 	public void setUp() {
 		lampada = new Attrezzo("lampada", 7);
+		s = new StanzaBuia("buia", "lampada");
 		spada = new Attrezzo("spada", 20);
 		s.setStrumentoSblocca("lampada");
 		s.impostaStanzaAdiacente("est", sEst);

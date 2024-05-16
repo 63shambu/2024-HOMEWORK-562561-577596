@@ -1,13 +1,16 @@
 package it.uniroma3.diadia.ambienti;
 
+import java.util.Iterator;
+
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class StanzaBuia extends Stanza {
 
 	private String strumentoSblocca;
 
-	public StanzaBuia(String nome) {
+	public StanzaBuia(String nome,String strumentoPerVedere) {
 		super(nome);
+		this.strumentoSblocca = strumentoPerVedere;
 	}
 
 	public String getStrumentoSblocca() {
@@ -33,14 +36,16 @@ public class StanzaBuia extends Stanza {
 	public boolean getLaStanzaSbloccata() {
 
 		// controllo che sia presente nella stanza lo strumento che sblocca la stanza
-		for (Attrezzo attrezzo : this.getAttrezzi()) {
-			if (attrezzo == null)
-				return false;
-			if (attrezzo.getNome() == this.strumentoSblocca)
-					return true;
-			}
-		return false;
+		Iterator<Attrezzo> it = this.getAttrezzi().iterator();
+
+		while (it.hasNext()) {
+			if (it.next().getNome().equals(this.strumentoSblocca))
+				return true;
 		}
+		return false;
+	}
+		
+		
 	
 
 
