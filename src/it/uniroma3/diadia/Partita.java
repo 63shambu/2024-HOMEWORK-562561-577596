@@ -24,9 +24,9 @@ public class Partita {
 	private Labirinto labirinto;
 	private IO console;
 
-	
-	public Partita(IO console, Labirinto labirinto){
-		this.console = console;
+
+	public Partita(IO io, Labirinto labirinto) {
+		this.console = io;
 		this.labirinto = labirinto;
 		Giocatore giocatore = new Giocatore();
 		this.giocatore=giocatore;
@@ -43,9 +43,6 @@ public class Partita {
 		/**
 	     *  le stanze le crea labirinto
 	     */
-		
-		
-		
 	}
 
 

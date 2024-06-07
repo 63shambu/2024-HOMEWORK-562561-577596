@@ -1,9 +1,8 @@
 package it.uniroma3.diadia.giocatore;
-import it.uniroma3.diadia.ambienti.*;
 
+import it.uniroma3.diadia.ambienti.Stanza;
 
 public class Giocatore {
-
 	static final private int CFU_INIZIALI = 20;
 	int cfu;
 	Borsa borsa;

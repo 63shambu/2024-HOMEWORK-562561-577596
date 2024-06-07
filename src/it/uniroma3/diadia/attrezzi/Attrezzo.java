@@ -59,26 +59,26 @@ public class Attrezzo implements Comparable<Attrezzo> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome);
+		return Objects.hash(nome, peso);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Attrezzo that = (Attrezzo) obj;
-	return this.getNome().equals(that.getNome()) && this.getPeso()==that.getPeso();
+
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Attrezzo that = (Attrezzo) obj;
+		return this.getNome().equals(that.getNome()) && this.getPeso()==that.getPeso();
 	};
 
 	@Override
 	public int compareTo(Attrezzo that) {
-		int cmp = this.nome.compareTo(that.getNome());
-		if (cmp==1)
-			cmp=(this.getPeso() - that.getPeso());
-		return cmp;
+		return this.nome.compareTo(that.getNome());
+		//if (cmp==0)
+		//	cmp=(this.getPeso() - that.getPeso());
+
 	}
 
 }
